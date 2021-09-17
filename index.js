@@ -1,3 +1,54 @@
+let album = []
+
+function search(query) { // parameter
+   
+  fetch("https://deezerdevs-deezer.p.rapidapi.com/search?q=" + query, {
+    "headers": {
+      "x-rapidapi-host": "deezerdevs-deezer.p.rapidapi.com",
+      "x-rapidapi-key": "45ea72d0cbmsh5a68a7ddaa76fefp17c953jsn0a280e030350",
+    },
+
+  })
+    .then(response => response.json())
+ 
+    .then(data => {
+      let artist = data.data
+
+      displayResults(artist);
+      console.log(artist);
+
+      function displayResults(album) {
+        const displaySection = document.querySelector('.main-container')
+
+        displaySection.innerHTML = ""
+        
+        album.forEach((obj, i) => {
+          displaySection.innerHTML +=
+            `<div class="col-sm-6 col-md-4 col-lg-3">
+                                <div class="card rounded border-0 text-white bg-dark mb-2" id="cardHover" onmouseover="mouseOver('linear-gradient(180deg, rgb(25, 4, 83) 0%, rgb(0, 0, 0) 35%)')" onmouseout="mouseOut()">
+                                    <div class="row no-gutters">
+                                        <div class="col-md-2">
+                                            <img src="${artist[i].artist.picture_small}" class="rounded-left" alt="...">
+                                        </div>
+                                        <div class="col-md-10">
+                                            <div class="card-body bodyHover">
+                                                <h5 id="fontSize" class="card-title ml-3">${artist[i].title}</h5>
+                                                <h6 class="card-title ml-3"><i class="fas fa-play-circle playHover"></i></h6>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+            `
+        })
+      }
+
+    })
+
+}
+
+
 function mouseOver(color) {
     document.body.style.background = color
     document.body.classList.add("out")
@@ -124,50 +175,4 @@ function createNewCard () {
     goodMorningCardContainer.appendChild(outermostDiv)
 }
 
-    // search function
   
-const search = (query) => {
-   
-  fetch("https://deezerdevs-deezer.p.rapidapi.com/search?q=" + query, {
-    "headers": {
-      "x-rapidapi-host": "deezerdevs-deezer.p.rapidapi.com",
-      "x-rapidapi-key": "45ea72d0cbmsh5a68a7ddaa76fefp17c953jsn0a280e030350",
-    },
-
-  })
-    .then(response = response.json())
-    .then(data => {
-      let album = data.data
-
-      displayResults(album);
-      console.log(album);
-
-      function displayResults(album) {
-        const displaySection = document.querySelector('.main-container')
-
-        displaySection.innerHTML = ""
-        
-        album.forEach((obj) => {
-          displaySection.innerHTML +=
-            `<div class="col-sm-6 col-md-4 col-lg-3 mb-5" >
-                                        <div class="card bg-dark border-dark"style="width:150px">
-                                           
-                                            <img src="${obj.album.cover}" class="p-2" alt="..." id="notRounded"  />
-                                            <div class="card-body">
-
-                                                <small class="card-text">${obj.album.title}</strong><br>
-
-                                                   <a href="./index2.html?objalbumId=${obj.album.id}" ><small style="color:white">${obj.album.title}</small></a>
-                                                </small>
-
-                                            </div>
-                                        </div>
-                                    </div>  
-
-            `
-        })
-      }
-
-    })
-
-}

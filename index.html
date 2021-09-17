@@ -47,13 +47,14 @@
 
                         </li>
                         <!-- search icon and text -->
-                        <li class="nav-item">
+                        <li class="nav-item" onkeyup="console.log(event.currentTarget)">
 
                             <a class="nav-link" href="#">
-                                <i class="fas fa-search"></i> Search
+                                <i class="fas fa-search"></i>Search
                             </a>
-                            <input type="text" placeholder="Search" onchange="search(query)">
+                            <input type="text" placeholder="Search" onkeyup="search(event.target.value)">
                         </li>
+                        
                         <!-- library icon and text -->
                         <li class="nav-item">
                             <a class="nav-link" href="#">
@@ -462,7 +463,7 @@
     -->
         <script>
             const getArtist = (query) => {
-                fetch("https://deezerdevs-deezer.p.rapidapi.com/search?q=" + query, {
+                fetch("https://deezerdevs-deezer.p.rapidapi.com/search?q=" + query.toLowerCase(), {
                         "method": "GET",
                         "headers": {
                             "x-rapidapi-host": "deezerdevs-deezer.p.rapidapi.com",
