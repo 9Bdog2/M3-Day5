@@ -123,3 +123,9 @@ function createNewCard () {
     //append new card into parent's container
     goodMorningCardContainer.appendChild(outermostDiv)
 }
+
+    // search function
+
+function search(e) {
+  const searchValue = e.target.value();
+    }
