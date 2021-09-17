@@ -308,46 +308,7 @@
                       <td colspan="2">20th Century Fox Firm Fare</td>
                       <td>0:25</td>
                     </tr>
-                    <tr>
-                      <th scope="row">2</th>
-                      <td colspan="2">Somebody To Love</td>
-                      <td>4:55</td>
-                    </tr>
-                    <tr>
-                      <th scope="row">3</th>
-                      <td colspan="2">Doing All Right - ...Revisited</td>
-                      <td>3:16</td>
-                    </tr>
-                    <tr>
-                      <th scope="row">4</th>
-                      <td colspan="2">Keep Yourself Alive - Live At The Rainbow</td>
-                      <td>3:56</td>
-                    </tr>
-                    <tr>
-                      <th scope="row">5</th>
-                      <td colspan="2">Killer Queen</td>
-                      <td>2:59</td>
-                    </tr>
-                    <tr>
-                      <th scope="row">6</th>
-                      <td colspan="2">Fat Bottomed Birls - Live In Paris</td>
-                      <td>4:37</td>
-                    </tr>
-                    <tr>
-                      <th scope="row">7</th>
-                      <td colspan="2">Bohemian Rhapsody</td>
-                      <td>5:54</td>
-                    </tr>
-                    <tr>
-                      <th scope="row">8</th>
-                      <td colspan="2">Now I'm Here - Live At The Hammersmith Odeon</td>
-                      <td>2:43</td>
-                    </tr>
-                    <tr>
-                      <th scope="row">9</th>
-                      <td colspan="2">Crazy Little Thing Called Love</td>
-                      <td>4mins</td>
-                    </tr>
+                    
                   </tbody>
                 </table>
               </div>
@@ -489,7 +450,9 @@
             window.onload = function() {
                 const row = document.querySelector('#image-align')
                 const query = new URLSearchParams(document.location.search).get("objalbumId");
+                const artist = new URLSearchParams(document.location.search).get("genre_id")
                 console.log(query)
+                console.log(artist)
 
 
                 fetch("https://striveschool-api.herokuapp.com/api/deezer/album/" + query, {
@@ -521,8 +484,62 @@
                     .catch(err => {
                         console.error(err);
                     });
+
+                    /* Getting all the songs */
+                    fetch("https://striveschool-api.herokuapp.com/api/deezer/search?q=eminem",  {
+                        "method": "GET",
+                        "headers": {
+                            "x-rapidapi-host": "deezerdevs-deezer.p.rapidapi.com",
+                            "x-rapidapi-key": "45ea72d0cbmsh5a68a7ddaa76fefp17c953jsn0a280e030350"
+                        },
+
+
+                    })
+                    .then(response => response.json())
+                    .then((data) => {
+
+                        /* Trying to ilustrate all songs  */
+                        const tbody = document.querySelector('tbody')
+                        /* clear all elements */
+                        tbody.innerHTML = ""
+                        let songs = data.data
+                        console.log(songs)
+                        /* going through each song */
+                        songs.forEach((obj, i) => {
+                            
+                             tbody.innerHTML +=
+                                    `<tr>
+                                        <th scope="row">${i}</th>
+                                        <td colspan="2">${songs[i].title}</td>
+                                        <td>${songs[i].duration}</td>
+                                    </tr>  `
+                            
+                            })
+
+                    })
+                    .catch(err => {
+                        console.error(err);
+                    });
+
+
             }
+
+
+
+
+
+
+
+
+
+
+
+
+             
         </script>
 </body>
 
 </html>
+
+
+
