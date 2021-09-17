@@ -450,7 +450,7 @@
             window.onload = function() {
                 const row = document.querySelector('#image-align')
                 const query = new URLSearchParams(document.location.search).get("objalbumId");
-                const artist = new URLSearchParams(document.location.search).get("genre_id")
+                const artist = []
                 console.log(query)
                 console.log(artist)
 
@@ -467,6 +467,7 @@
                     .then(response => response.json())
                     .then((data) => {
                         console.log(data)
+                        artist.push(data)
                         const container = `<div class="col-4 col-sm-4 col-lg-3 col-xl-3">
                                     <img src="${data.cover_big}" class="img-fluid" />
                                 </div>
