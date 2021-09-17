@@ -125,7 +125,49 @@ function createNewCard () {
 }
 
     // search function
+  
+const search = (query) => {
+   
+  fetch("https://deezerdevs-deezer.p.rapidapi.com/search?q=" + query, {
+    "headers": {
+      "x-rapidapi-host": "deezerdevs-deezer.p.rapidapi.com",
+      "x-rapidapi-key": "45ea72d0cbmsh5a68a7ddaa76fefp17c953jsn0a280e030350",
+    },
 
-function search(e) {
-  const searchValue = e.target.value();
-    }
+  })
+    .then(response = response.json())
+    .then(data => {
+      let album = data.data
+
+      displayResults(album);
+      console.log(album);
+
+      function displayResults(album) {
+        const displaySection = document.querySelector('.main-container')
+
+        displaySection.innerHTML = ""
+        
+        album.forEach((obj) => {
+          displaySection.innerHTML +=
+            `<div class="col-sm-6 col-md-4 col-lg-3 mb-5" >
+                                        <div class="card bg-dark border-dark"style="width:150px">
+                                           
+                                            <img src="${obj.album.cover}" class="p-2" alt="..." id="notRounded"  />
+                                            <div class="card-body">
+
+                                                <small class="card-text">${obj.album.title}</strong><br>
+
+                                                   <a href="./index2.html?objalbumId=${obj.album.id}" ><small style="color:white">${obj.album.title}</small></a>
+                                                </small>
+
+                                            </div>
+                                        </div>
+                                    </div>  
+
+            `
+        })
+      }
+
+    })
+
+}

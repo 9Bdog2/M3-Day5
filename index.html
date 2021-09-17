@@ -50,8 +50,9 @@
                         <li class="nav-item">
 
                             <a class="nav-link" href="#">
-                                <i class="fas fa-search" onClick="uniqueArtist('Artist')"></i> Search
+                                <i class="fas fa-search"></i> Search
                             </a>
+                            <input type="text" placeholder="Search" onchange="search(query)">
                         </li>
                         <!-- library icon and text -->
                         <li class="nav-item">
@@ -188,10 +189,11 @@
                     </div>
 
                     <!-- </div>- Good morning Container | Sara's section -->
+                    <main>
+                    <div class="container-fluid main-container">
+                    <div class="container-fluid goodmorningcontainer mt-3">
 
-                    <div class="container-fluid  goodmorningcontainer mt-3">
-
-                        <h4 class="mt-5" id="song" onClick="getArtist('eminem')">Good morning</h4>
+                        <h4 class="mt-5" id="song" onClick="getArtist('metallica')">Good morning</h4>
                     </div>
 
                     <div class="container-fluid mt-3">
@@ -355,6 +357,8 @@
                 </div>
             </div>
         </div>
+        </div>
+        </main>
         <!--      footer container  -->
         <br>
         <br>
