@@ -159,16 +159,8 @@
             <div class="col-10 mx-n3">
                 <div class="row">
                     <div class="col-12 jumbotronContainer">
-                        <div class="jumbotron jumbotron-fluid artist">
-                            <img src="https://i.ytimg.com/vi/x3aMO8wLNyc/maxresdefault.jpg" alt="queen + adam lambert around the world live" class="img-fluid">
-                            <div class="container-fluid artist-info no-gutters">
-                                <p class="my-0">
-                                    <i class="fas fa-certificate"></i>
-                                    <i class="fas fa-check"></i> Verified Artist
-                                </p>
-                                <h1>Queen</h1>
-                                <p>37,120,733 monthly listeners</p>
-                            </div>
+                        <div class="jumbotron jumbotron-fluid artist" id="jumbotron">
+                            
                         </div>
                     </div>
                 </div>
@@ -355,7 +347,7 @@
 
     <script>
         window.onload = function() {
-            const row = document.querySelector('#artist')
+            const row = document.querySelector('#jumbotron')
             const query = new URLSearchParams(document.location.search).get("objalbumId");
             console.log(query)
 
@@ -443,10 +435,23 @@
                       <td>${songs[i].duration}</td>
                       </tr>
                     `
-                    
-                    
-                    
+
                   }
+                  let container = document.querySelectorAll("#jumbotron");
+                  console.log(container)
+                  
+                  container = `
+                            <img src="${songs[0].album.cover_big}" alt="" class="img-fluid">
+                            <div class="container-fluid artist-info no-gutters">
+                                <p class="my-0">
+                                    <i class="fas fa-certificate"></i>
+                                    <i class="fas fa-check"></i> Verified Artist
+                                </p>
+                                <h1>${songs[0].artist.name}</h1>
+                                <p>${songs[0].rank} monthly listeners</p>
+                            </div>
+                  `
+                  row.innerHTML = container
                 
           })
                 
@@ -458,3 +463,4 @@
 </body>
 
 </html>
+
