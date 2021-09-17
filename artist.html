@@ -372,7 +372,7 @@
                 .then(response => response.json())
                 .then((data) => {
                     console.log(data)
-                    const container = `<tr class="queenTr">
+                   /*  const container = `<tr class="queenTr">
                                             <th class="float-right" scope="row" class="col-1">1</th>
                                             <td class="col-1"><img id="queenSize" src="${data.cover_big}" /></td>
                                             <td class="pl-0">${data.title}</td>
@@ -407,9 +407,49 @@
                                             <td>705,234,665</td>
                                             <td>2:02</td>
                                         </tr>`
-                    row.innerHTML = container
+                    row.innerHTML = container */
 
+                    return fetch(
+                  "https://striveschool-api.herokuapp.com/api/deezer/search?q=" + data.artist.name,
+                  {
+                    method: "GET",
+                    headers: {
+                      "x-rapidapi-host": "deezerdevs-deezer.p.rapidapi.com",
+                      "x-rapidapi-key":
+                        "45ea72d0cbmsh5a68a7ddaa76fefp17c953jsn0a280e030350",
+                    },
+                  }
+                );
+                
+                    
                 })
+
+                .then((response) => response.json())
+                .then((data) => {
+                /* Trying to ilustrate all songs  */
+                const tbody = document.querySelector("tbody");
+                /* clear all elements */
+                tbody.innerHTML = "";
+                let songs = data.data;
+                console.log(songs);
+
+                songs.forEach((obj, i) => {
+                  console.log("x");
+
+                  tbody.innerHTML += `<tr class="queenTr">
+                                            <th class="float-right" scope="row" class="col-1">${i}</th>
+                                            <td class="col-1"><img id="queenSize" src="${songs[i].album.cover_small}" /></td>
+                                            <td class="pl-0">${songs[i].title}</td>
+                                            <td>${songs[i].rank}</td>
+                                            <td>${songs[i].duration}</td>
+                                        </tr>
+                                        `
+                    
+                  });
+                
+                
+          })
+                
                 .catch(err => {
                     console.error(err);
                 });
