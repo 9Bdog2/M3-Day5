@@ -24,7 +24,8 @@ function search(query) { // parameter
         
         album.forEach((obj, i) => {
           displaySection.innerHTML +=
-            `<div class="col-sm-6 col-md-4 col-lg-3">
+            `
+            <div class="col-sm-6 col-md-4 col-lg-3">
                                 <div class="card rounded border-0 text-white bg-dark mb-2" id="cardHover" onmouseover="mouseOver('linear-gradient(180deg, rgb(25, 4, 83) 0%, rgb(0, 0, 0) 35%)')" onmouseout="mouseOut()">
                                     <div class="row no-gutters">
                                         <div class="col-md-2">
@@ -39,9 +40,10 @@ function search(query) { // parameter
                                     </div>
                                 </div>
                             </div>
-
+            
             `
         })
+       
       }
 
     })
