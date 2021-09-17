@@ -433,20 +433,20 @@
                 let songs = data.data;
                 console.log(songs);
 
-                songs.forEach((obj, i) => {
-                  console.log("x");
-
-                  tbody.innerHTML += `<tr class="queenTr">
-                                            <th class="float-right" scope="row" class="col-1">${i}</th>
-                                            <td class="col-1"><img id="queenSize" src="${songs[i].album.cover_small}" /></td>
-                                            <td class="pl-0">${songs[i].title}</td>
-                                            <td>${songs[i].rank}</td>
-                                            <td>${songs[i].duration}</td>
-                                        </tr>
-                                        `
+                for (let i = 0; i < 15; i++) {
+          
+                    tbody.innerHTML += `<tr class="queenTr">
+                      <th class="float-right" scope="row" class="col-1">${i}</th>
+                      <td class="col-1"><img id="queenSize" src="${songs[i].album.cover_small}" /></td>
+                      <td class="pl-0">${songs[i].title}</td>
+                      <td>${songs[i].rank}</td>
+                      <td>${songs[i].duration}</td>
+                      </tr>
+                    `
                     
-                  });
-                
+                    
+                    
+                  }
                 
           })
                 
